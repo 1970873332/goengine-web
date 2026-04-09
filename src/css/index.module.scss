@@ -1,0 +1,29 @@
+/* 滚动条 */
+.scrollbar {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        display: block;
+    }
+}
+
+/* 全屏 */
+.full-screen {
+    width: 100vw;
+    height: var(--app-height);
+}
+
+/* 定位铺满 */
+.absolute-full {
+    position: absolute;
+    inset: 0;
+}
+
+/* 仅子项拥有事件 */
+.only-subitems-events {
+    pointer-events: none;
+
+    &>* {
+        pointer-events: all;
+    }
+}

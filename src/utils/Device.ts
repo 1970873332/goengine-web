@@ -1,5 +1,3 @@
-import { DeviceStoreState } from "../stores/redux/presets/Device";
-
 /**
  * 设备工具
  */
@@ -11,8 +9,8 @@ export class DeviceUtils {
      * @returns
      */
     public static deviceToggle<T = unknown>(
-        device: DeviceStoreState | undefined,
-        state: Partial<{ [key in keyof DeviceStoreState]: T[] }>,
+        device: Device | undefined,
+        state: Partial<{ [key in keyof Device]: T[] }>,
     ): T {
         const { mobile, pad, landscape } = device ?? {};
         const {
@@ -43,8 +41,8 @@ export class DeviceUtils {
      * @returns
      */
     public static deviceOnlyToggle<T = unknown>(
-        device: DeviceStoreState | undefined,
-        state: Partial<{ [key in keyof DeviceStoreState]: T }>,
+        device: Device | undefined,
+        state: Partial<{ [key in keyof Device]: T }>,
     ): T {
         const { mobile, pad } = device ?? {};
         const {
@@ -59,4 +57,35 @@ export class DeviceUtils {
         }
         return desktopState! ?? padState! ?? mobileState!;
     }
+}
+
+export interface Device {
+    /**
+     * 是否桌面端
+     */
+    desktop: boolean;
+    /**
+     * 是否移动端
+     */
+    mobile: boolean;
+    /**
+     * 是否Pad端
+     */
+    pad: boolean;
+    /**
+     * 是否IOS设备
+     */
+    ios: boolean;
+    /**
+     * 是否安卓设备
+     */
+    android: boolean;
+    /**
+     * 是否微信环境
+     */
+    wechat: boolean;
+    /**
+     * 是否横屏
+     */
+    landscape: boolean;
 }

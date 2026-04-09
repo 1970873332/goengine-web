@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "./index.module.scss";
+
+:root {
+    --app-height: 100vh;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: var(--app-height);
+}
