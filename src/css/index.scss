@@ -23,7 +23,7 @@
 .only-subitems-events {
     pointer-events: none;
 
-    &>* {
+    & > * {
         pointer-events: all;
     }
 }

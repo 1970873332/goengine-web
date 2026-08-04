@@ -12,8 +12,7 @@ export abstract class RouteConfig {
      */
     public static readonly redirect: boolean = false;
 
-
-    public static test(): void { }
+    public static test(): void {}
 }
 
 export interface RouteObject {

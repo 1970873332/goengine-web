@@ -1,10 +1,10 @@
-import { EventState, EventTarget } from "@core/supplement/Event";
+import { EventState, EventTarget } from "@goengine/core/src/supplement/Event";
 import { KeyboardEvent as ReactKeyboardEvent } from "react";
 
 /**
  * 键盘控制
  */
-export class KeyBoardControl<E extends IEvent = IEvent> extends EventTarget<E> {
+export class KeyBoardControl<E extends IEvent> extends EventTarget<E> {
     /**
      * 所有键
      */
@@ -193,13 +193,14 @@ type TKeyMap = {
 };
 
 type TKeyBoardControl = {
-    [key in keyof KeyBoardControl]: KeyBoardControl[key];
+    [key in keyof KeyBoardControlAny]: KeyBoardControlAny[key];
 } & TKeyMap;
+
+type KeyBoardControlAny = KeyBoardControl<any>;
 
 export {
     IEvent as KeyBoardControlEvent,
     TKey as KeyBoardControlKey,
     IKeyEvent as KeyBoardControlKeyEvent,
-    TKeyBoardControl as KeyBoardControlMap
+    TKeyBoardControl as KeyBoardControlMap,
 };
-

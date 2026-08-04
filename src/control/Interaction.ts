@@ -1,13 +1,11 @@
-import { Vector2 } from "@core/object/math/Index";
-import { EventState, EventTarget } from "@core/supplement/Event";
+import Vector2 from "@goengine/core/src/object/math/vector/Vector2";
+import { EventState, EventTarget } from "@goengine/core/src/supplement/Event";
 
 /**
  * 事件交互
  */
-export default class Interaction<
-    E extends IEvent = IEvent,
-> extends EventTarget<E> {
-    constructor(private readonly element: HTMLElement) {
+export default class Interaction<E extends IEvent> extends EventTarget<E> {
+    constructor(public readonly element: HTMLElement) {
         super();
 
         this.wheelState = new EventState(
@@ -61,7 +59,7 @@ export default class Interaction<
     /**
      * 滚轮事件状态
      */
-    protected declare wheelState: EventState<WindowEventMap>;
+    declare protected wheelState: EventState<WindowEventMap>;
     /**
      * 鼠标移动事件状态
      */
@@ -81,7 +79,7 @@ export default class Interaction<
     /**
      * 鼠标按下事件状态
      */
-    protected declare mouseDownState: EventState<WindowEventMap>;
+    declare protected mouseDownState: EventState<WindowEventMap>;
     /**
      * 触摸移动事件状态
      */
@@ -93,7 +91,7 @@ export default class Interaction<
     /**
      * 触摸结束事件状态
      */
-    protected declare touchStartState: EventState<WindowEventMap>;
+    declare protected touchStartState: EventState<WindowEventMap>;
     /**
      * 触摸结束事件状态
      */
@@ -141,7 +139,8 @@ export default class Interaction<
                 this.dispatchCustomEvent("rightDown", event);
                 break;
         }
-        if (event.target instanceof HTMLElement) this.down_element = event.target;
+        if (event.target instanceof HTMLElement)
+            this.down_element = event.target;
         this.dispatchCustomEvent("mouseDown", event);
     }
     /**
@@ -164,7 +163,8 @@ export default class Interaction<
                 break;
         }
         this.dispatchCustomEvent("mouseUp", event);
-        if (event.target === this.down_element) this.dispatchCustomEvent("click", event);
+        if (event.target === this.down_element)
+            this.dispatchCustomEvent("click", event);
         delete this.down_element;
     }
     /**
@@ -175,16 +175,17 @@ export default class Interaction<
         this.touching = !!event.touches.length;
         if (event.touches.length === 2) {
             const v1 = new Vector2(
-                event.touches[0].clientX,
-                event.touches[0].clientY,
-            ),
+                    event.touches[0].clientX,
+                    event.touches[0].clientY,
+                ),
                 v2 = new Vector2(
                     event.touches[1].clientX,
                     event.touches[1].clientY,
                 );
             this.first_zoom_distance = v1.distance(v2);
         }
-        if (event.target instanceof HTMLElement) this.down_element = event.target;
+        if (event.target instanceof HTMLElement)
+            this.down_element = event.target;
         this.dispatchCustomEvent("touchStart", event);
     }
     /**
@@ -194,9 +195,9 @@ export default class Interaction<
     protected handleTouchMove(event: TouchEvent): void {
         if (event.touches.length === 2) {
             const v1 = new Vector2(
-                event.touches[0].clientX,
-                event.touches[0].clientY,
-            ),
+                    event.touches[0].clientX,
+                    event.touches[0].clientY,
+                ),
                 v2 = new Vector2(
                     event.touches[1].clientX,
                     event.touches[1].clientY,
@@ -221,7 +222,8 @@ export default class Interaction<
     protected handleTouchEnd(event: TouchEvent): void {
         this.touching = !!event.touches.length;
         this.dispatchCustomEvent("touchEnd", event);
-        if (event.target === this.down_element) this.dispatchCustomEvent("touch", event);
+        if (event.target === this.down_element)
+            this.dispatchCustomEvent("touch", event);
         delete this.down_element;
     }
     /**
@@ -339,5 +341,6 @@ interface IEvent {
     zoomOut: TouchEvent;
 }
 
-export { IEvent as EventMapEvent };
+type IAny = Interaction<any>;
 
+export { IAny as InteractionAny, IEvent as InteractionEvent };

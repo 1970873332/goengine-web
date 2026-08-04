@@ -1,11 +1,9 @@
-import { EventTarget } from "@core/supplement/Event";
+import { EventTarget } from "@goengine/core/src/supplement/Event";
 
 /**
  * WebSocket服务器
  */
-export default class WebSocketServer<
-    E extends IEvent = IEvent,
-> extends EventTarget<E> {
+export default class WebSocketServer<E extends IEvent> extends EventTarget<E> {
     constructor(protected url: string) {
         super();
     }
