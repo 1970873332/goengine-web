@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "./index.scss";
 
+/*
+ * webs 目录在 .gitignore 中，Tailwind v4 的自动内容扫描默认会跳过被忽略的文件，
+ * 导致 webs 项目中使用的工具类无法生成。这里显式声明扫描路径，保证 webs 内可正常使用 Tailwind。
+ */
+@source "../../../../webs";
+
 :root {
     --app-height: 100vh;
 }
