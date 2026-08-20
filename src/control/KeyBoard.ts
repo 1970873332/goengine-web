@@ -101,7 +101,7 @@ export class KeyBoardControl<E extends IEvent> extends EventTarget<E> {
      * 键盘按下
      * @param event
      */
-    protected handleKeyDown(event: TKeyboardEvent): void {
+    protected handleKeyDown(event: KeyboardEvent): void {
         this.hijack && event.preventDefault();
         const type = this.formatCode(event.code);
         const keyMap = (this as TKeyBoardControl)[`KEY_${type}`];
@@ -121,7 +121,7 @@ export class KeyBoardControl<E extends IEvent> extends EventTarget<E> {
      * 键盘抬起
      * @param event
      */
-    protected handleKeyUp(event: TKeyboardEvent): void {
+    protected handleKeyUp(event: KeyboardEvent): void {
         this.hijack && event.preventDefault();
         const type = this.formatCode(event.code);
         const keyMap = (this as TKeyBoardControl)[`KEY_${type}`];
@@ -180,12 +180,10 @@ interface IKeyEvent extends EventTarget<IEvent> {
     /**
      * 事件
      */
-    event?: TKeyboardEvent;
+    event?: KeyboardEvent;
 }
 
 type TKey = (typeof KeyBoardControl)["codeMapping"][number];
-
-type TKeyboardEvent = KeyboardEvent;
 
 type TKeyMap = {
     [key in TKey as `KEY_${key}`]?: IKeyEvent;
