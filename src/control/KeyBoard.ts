@@ -1,5 +1,4 @@
 import { EventState, EventTarget } from "@goengine/core/src/supplement/Event";
-import { KeyboardEvent as ReactKeyboardEvent } from "react";
 
 /**
  * 键盘控制
@@ -186,7 +185,7 @@ interface IKeyEvent extends EventTarget<IEvent> {
 
 type TKey = (typeof KeyBoardControl)["codeMapping"][number];
 
-type TKeyboardEvent = KeyboardEvent | ReactKeyboardEvent;
+type TKeyboardEvent = KeyboardEvent;
 
 type TKeyMap = {
     [key in TKey as `KEY_${key}`]?: IKeyEvent;

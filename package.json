@@ -7,11 +7,5 @@
     "type": "module",
     "dependencies": {
         "@goengine/core": "workspace:*"
-    },
-    "peerDependencies": {
-        "react": "^19.2.0"
-    },
-    "devDependencies": {
-        "@types/react": "^19.2.6"
     }
 }
